@@ -1,8 +1,9 @@
 let id = "";
 let dataset;
+let url = "https://maucfd.github.io/Belly-Button-Biodiversity/samples.json";
 
 function run() {
-  d3.json("samples.json").then(function(data){
+  d3.json(url).then(function(data){
     dataset = data;
 
     console.log(dataset);
