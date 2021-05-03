@@ -2,11 +2,14 @@ let id = "";
 let dataset;
 let url = "https://maucfd.github.io/Belly-Button-Biodiversity/samples.json";
 
-function run() {
+function init() {
   d3.json(url).then(function(data){
     dataset = data;
 
     console.log(dataset);
+
+    const dataPromise = d3.json(url);
+    console.log("Data Promise: ", dataPromise);
 
     metaData(940,dataset);
     barChart(940,dataset);
@@ -43,10 +46,6 @@ function displayObject(obj) {
     let strg = "";
     Object.entries(obj).forEach(([key,value]) => {
         strg += `<br>${key} - ${value}</br>`;
-        if(key=="wfreq"){
-            buildGauge(value);
-            console.log("gauge value is:" +value);
-        }        
     });
     return strg;
 }
@@ -121,4 +120,4 @@ function bubbleChart(id,dataset) {
     Plotly.newPlot("bubble",data,layout);
 }
 
-run();
+init();
