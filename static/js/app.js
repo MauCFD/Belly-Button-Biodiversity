@@ -17,7 +17,7 @@ function init() {
 
     let optionList = d3.select("#selDataset");
 
-    data.names.forEach(function(name){
+    data[0].names.forEach(function(name){
       optionList.append("option").text(name);
     });
  })
@@ -38,7 +38,8 @@ function optionChanged(value) {
 }
 
 function metaData(id,dataset) {
-    let mData = dataset.metadata.filter(row => row.id == id);
+    console.log(dataset[0].metadata);
+    let mData = dataset[0].metadata.filter(row => row.id == id);
     d3.select("#sample-metadata").html(displayObject(mData[0]));
 }
 
@@ -51,7 +52,7 @@ function displayObject(obj) {
 }
 
 function barChart(id,dataset) {    
-    let barChartData = dataset.samples.filter(sample => sample.id == id);
+    let barChartData = dataset[0].samples.filter(sample => sample.id == id);
     console.log(barChartData);
     
     let y = barChartData.map(row =>row.otu_ids);  
@@ -84,7 +85,7 @@ function barChart(id,dataset) {
 }
 
 function bubbleChart(id,dataset) {
-    let barChartData = dataset.samples.filter(sample => sample.id == id);
+    let barChartData = dataset[0].samples.filter(sample => sample.id == id);
     console.log(barChartData); 
 
     let x = barChartData.map(row =>row.otu_ids); 
